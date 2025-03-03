@@ -20,3 +20,21 @@ def create(request):
         book_form = BookForm()
 
         return render(request, 'book_form.html', {'form': book_form})
+    
+# view function for update route declared here
+def update(request, book_id):
+    print('BOOK ID: ', book_id, request.method)
+
+    specific_book = Books.objects.get(id=book_id)
+
+    if request.method == 'POST':
+        book_form = BookForm(request.POST, instance=specific_book)
+
+        if book_form.is_valid():
+            book_form.save()
+            return redirect('/')
+    
+    else:
+        book_form = BookForm(instance=specific_book)
+
+        return render(request, 'book_form.html', {'form': book_form})

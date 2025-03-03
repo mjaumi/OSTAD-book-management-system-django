@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Books
 
 # view function for home page declared here
 def home(request):
-    return HttpResponse('<h1>Hello World!</h1>')
+    book_list = Books.objects.all()
+
+    return render(request, 'index.html', {'books': book_list})

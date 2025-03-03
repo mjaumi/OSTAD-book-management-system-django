@@ -3,5 +3,5 @@ from . import views
 
 # URL patterns for books app declared here
 urlpatterns = [
-    path('', views.home)
+    path('', views.home, name='book list')
 ]

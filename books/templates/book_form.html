@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if form.instance.id %}
+Update
+{% else %}
+Add
+{% endif %}
+Book
+{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
+    <div class="mb-6">
+        <h1 class="text-3xl font-bold text-gray-800">
+            {% if form.instance.id %}
+            Update
+            {% else %}
+            Add
+            {% endif %} Book
+        </h1>
+    </div>
+
+
+    <form method="post" class="space-y-4">
+
+        {% csrf_token %}
+
+        {{ form }}
+
+        <div class="flex justify-end space-x-3 mt-4">
+            <a href="{% url 'book_list' %}"
+                class="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50">Cancel</a>
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %}

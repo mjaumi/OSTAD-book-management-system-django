@@ -23,8 +23,6 @@ def create(request):
     
 # view function for update route declared here
 def update(request, book_id):
-    print('BOOK ID: ', book_id, request.method)
-
     specific_book = Books.objects.get(id=book_id)
 
     if request.method == 'POST':
@@ -38,3 +36,11 @@ def update(request, book_id):
         book_form = BookForm(instance=specific_book)
 
         return render(request, 'book_form.html', {'form': book_form})
+    
+# view function for delete route declared here    
+def delete(request, book_id):
+    specific_book = Books.objects.get(id=book_id)
+
+    specific_book.delete()
+
+    return redirect('/')

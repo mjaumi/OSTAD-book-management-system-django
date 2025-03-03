@@ -7,6 +7,7 @@
     <h1 class="text-3xl font-bold text-gray-800">All Books</h1>
 </div>
 
+{% if books|length > 0 %}
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {% for book in books %}
     <div class="bg-white rounded-lg shadow p-4">
@@ -28,9 +29,12 @@
             <a href="{% url 'update_book' book.id %}" class="px-3 py-1 bg-indigo-100 text-indigo-600 rounded-md">
                 Update
             </a>
-            <a href="#" class="px-3 py-1 bg-red-100 text-red-600 rounded-md">Delete</a>
+            <a href="{% url 'delete_book' book.id %}" class="px-3 py-1 bg-red-100 text-red-600 rounded-md">Delete</a>
         </div>
     </div>
     {% endfor %}
 </div>
+{% else %}
+<p class="text-center text-red-600 font-semibold text-lg">No Books Found!!</p>
+{% endif %}
 {% endblock %}
